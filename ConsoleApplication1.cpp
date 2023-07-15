@@ -16,7 +16,7 @@
 
 template<typename K, typename V>
 class range_map {
-	friend void IntervalMapTest();
+	friend void rangeMapTest();
     friend class test_map;
 	V m_valBegin;
 	std::map<K, V> m_map;
@@ -26,16 +26,14 @@ public:
 		: m_valBegin(val)
 	{}
 
-	// Assign value val to interval [keyBegin, keyEnd).
-	// Overwrite previous values in this interval.
-	// Conforming to the C++ Standard Library conventions, the interval
-	// includes keyBegin, but excludes keyEnd.
-	// If !( keyBegin < keyEnd ), this designates an empty interval,
+	// Assign value val to range [keyBegin, keyEnd).
+	// Overwrite previous values in this range.
+	// If !( keyBegin < keyEnd ), this designates an empty range,
 	// and assign must do nothing.
 	void assign(K const& keyBegin, K const& keyEnd, V const& val) {
 
         //std::cout << "here " << keyBegin << " " << keyEnd << std::endl;
-        // Empty interval check, return if the keyBegin is bigger than
+        // Empty range check, return if the keyBegin is bigger than
         // or equal to keyEnd
         //
         if (!(keyBegin < keyEnd)) {
@@ -107,7 +105,7 @@ void printPassFail(std::string rangeType, int index, int passed, int failed) {
     std::cout <<rangeType<<" | test number = " <<index<<" | passed = "<< passed << " | failed = " << failed << "\n";
 }
 
-void IntervalMapTest() {
+void rangeMapTest() {
     //Initialise m_map
     //range_map m = range_map<int, char>('A');
     range_map<int, char> m('A');
@@ -375,7 +373,7 @@ int main() {
         //tm.test();
     }
     std::cout << "Done Test!" << std::endl;
-    //IntervalMapTest();
+    //rangeMapTest();
     return 0;
 }
 
